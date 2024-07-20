@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ city_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='assets/images/favicon.svg') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/images/favicon.png') }}">
+</head>
+<body>
+    <div class="container">
+        <h1><a href="{{ url_for('main') }}">{{ city_name }}</a></h1>
+        
+        <div class="dropdown">
+            <label for="sort_by">Sort by: </label>
+            <select id="sort_by" name="sort_by" onchange="sortPlaces()">
+                <option value="relevance_score" {% if sort_by == 'relevance_score' %}selected{% endif %}>Relevance Score</option>
+                <option value="view_count" {% if sort_by == 'view_count' %}selected{% endif %}>Page Views</option>
+                <option value="page_size" {% if sort_by == 'page_size' %}selected{% endif %}>Page Size</option>
+                <option value="image_count" {% if sort_by == 'image_count' %}selected{% endif %}>Images</option>
+                <option value="link_count" {% if sort_by == 'link_count' %}selected{% endif %}>Link Count</option>
+            </select>
+        </div>
+
+        <div class="place-list">
+            {% for place in places %}
+                <div class="place-item">
+                    <a href="{{ url_for('city', city_id=city_id, place_id=place[0]) }}">
+                        {% if place[2].startswith('http') %}
+                            <img src="{{ place[2] }}" alt="Image of {{ place[1] }}" class="place-image">
+                        {% else %}
+                            <img src="{{ url_for('static', filename=place[2]) }}" alt="Image of {{ place[1] }}" class="place-image">
+                        {% endif %}
+                        <p>{{ place[1] }} </p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function sortPlaces() {
+            var sort_by = document.getElementById("sort_by").value;
+            window.location.href = "{{ url_for('citylist', city_id=city_id) }}?sort_by=" + sort_by;
+        }
+    </script>
+</body>
+</html>

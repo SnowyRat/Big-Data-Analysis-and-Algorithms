@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ place[1] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='assets/images/favicon.svg') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/images/favicon.png') }}">
+</head>
+<body>
+    <div class="container">
+        <h1><a href="{{ url_for('main') }}">{{ place[1] }}</a></h1>
+<div class="place-info">
+    {% if place[6].startswith('http') %}
+        <img src="{{ place[6] }}" alt="Image of {{ place[1] }}" class="main-image">
+    {% else %}
+        <img src="{{ url_for('static', filename=place[6]) }}" alt="Image of {{ place[1] }}" class="main-image">
+    {% endif %}
+    <div class="place-details">
+        <p><strong>Name:</strong> {{ place[1] }}</p>
+        <p><strong>City:</strong> {{ city_name }}</p>
+        <p><strong>Country:</strong> {{ country_name }}</p>
+        <p><strong>Location:</strong> Latitude: {{ place[2] }}, Longitude: {{ place[3] }}</p>
+        <p><strong>Relevance Score:</strong> {{ place[11] }}</p>
+        <p><strong>Image Count:</strong> {{ place[10] }}</p>
+        <p><strong>Link Count:</strong> {{ place[9] }}</p>
+        <p><strong>Page Views</strong> {{ place[7] }}</p>
+        <p><strong>Page Size:</strong> {{ place[8] }}</p>
+    </div>
+</div>
+
+<h2>Similar Places in Selected City by Main Information</h2>
+<div class="similar-places">
+    {% for similar in similar_places_by_data_same_city %}
+        <div class="similar-place-item">
+            <a href="{{ url_for('city', place_id=similar[0]) }}">
+                {% if similar[2].startswith('http') %}
+                    <img src="{{ similar[2] }}" alt="Image of {{ similar[1] }}" class="place-image">
+                {% else %}
+                    <img src="{{ url_for('static', filename=similar[2]) }}" alt="Image of {{ similar[1] }}" class="place-image">
+                {% endif %}
+                <p>{{ similar[1] }}</p>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+<h2>Similar Places in Selected City by Images</h2>
+<div class="similar-places">
+    {% for similar in similar_places_by_colors_same_city %}
+        <div class="similar-place-item">
+            <a href="{{ url_for('city', place_id=similar[0]) }}">
+                {% if similar[2].startswith('http') %}
+                    <img src="{{ similar[2] }}" alt="Image of {{ similar[1] }}" class="place-image">
+                {% else %}
+                    <img src="{{ url_for('static', filename=similar[2]) }}" alt="Image of {{ similar[1] }}" class="place-image">
+                {% endif %}
+                <p>{{ similar[1] }}</p>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+<h2>Similar Places in Other Cities by Images</h2>
+<div class="similar-places">
+    {% for similar in similar_places_by_colors_other_cities %}
+        <div class="similar-place-item">
+            <a href="{{ url_for('city', place_id=similar[0]) }}">
+                {% if similar[2].startswith('http') %}
+                    <img src="{{ similar[2] }}" alt="Image of {{ similar[1] }}" class="place-image">
+                {% else %}
+                    <img src="{{ url_for('static', filename=similar[2]) }}" alt="Image of {{ similar[1] }}" class="place-image">
+                {% endif %}
+                <p>{{ similar[1] }} </p>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+    </div>
+</body>
+</html>

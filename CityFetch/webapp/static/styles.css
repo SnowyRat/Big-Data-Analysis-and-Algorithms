@@ -1,0 +1,169 @@
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #201f1f;
+    color: #ffffff;
+    line-height: 1.8;
+}
+
+.container {
+    width: 90%;
+    max-width: 800;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #201f1f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.city-list, .place-list, .similar-places {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.city-item, .place-item, .similar-place-item {
+    padding: 15px;
+    border: 2px solid #fff;
+    border-radius: 0;
+    text-align: center;
+    background-color: #201f1f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.city-item:hover, .place-item:hover, .similar-place-item:hover {
+    transform: translateY(-5px);
+    border-color: #ffcc00;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.city-link, .place-link, .similar-place-item a {
+    text-decoration: none !important;
+    color: rgb(255, 255, 255); /* Default link color */
+    font-weight: bold;
+    margin: 10px 0;
+    display: block;
+}
+
+.city-link:hover, .place-link:hover, .similar-place-item a:hover {
+    color: rgb(255, 255, 255); /* Link hover color */
+    text-decoration: none !important;
+}
+
+.city-image, .place-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    margin-bottom: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.place-details {
+    text-align: left;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.dominant-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.color-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.header {
+    background-color: rgb(255, 255, 255);
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.header a {
+    color: rgb(255, 255, 255);
+    text-decoration: none !important;
+    font-size: 1.5em;
+}
+
+.header a:hover {
+    color: rgb(255, 255, 255); /* Optional hover color for header links */
+}
+/* unvisited link */
+a:link {
+    text-decoration: none !important;
+    color: #ffffff;
+  }
+  
+  /* visited link */
+  a:visited {
+    text-decoration: none !important;
+    color: #ffffff;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    text-decoration: none !important;
+    color: #ffffff;
+  }
+  
+  /* selected link */
+  a:active {
+    text-decoration: none !important;
+    color: #ffffff;
+  }
+
+.dropdown {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .city-image, .place-image {
+        height: 120px;
+    }
+}
